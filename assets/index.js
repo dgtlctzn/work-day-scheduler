@@ -5,8 +5,8 @@ var currentDateString = moment().format("MMMM, Do YYYY");
 var currentDatetime = moment();
 console.log(currentDatetime.hour());
 
-for (i = 0; i < 9; i++) {
-    var businessHour = moment().hour(i + 9).format("hA")
+for (i = 9; i < 18; i++) {
+    var businessHour = moment().hour(i).format("hA")
 
     var timeRow = $("<div>");
 
@@ -17,10 +17,16 @@ for (i = 0; i < 9; i++) {
     timeRow.addClass("row");
     timeBlock.addClass("col-sm-1 time-block");
     timeBlock.text(businessHour);
-    textArea.addClass("col-sm-10 past");
+    textArea.addClass("col-sm-10");
     saveButton.addClass("col-sm-1 saveBtn");
 
-    // if (currentDatetime.hour() > i) 
+    if (currentDatetime.hour() > i) {
+        textArea.addClass("past");
+    } else if (currentDatetime.hour() < i) {
+        textArea.addClass("future");
+    } else {
+        textArea.addClass("present");
+    }
 
     timeRow.append(timeBlock, textArea, saveButton);
     mainContainer.append(timeRow);
