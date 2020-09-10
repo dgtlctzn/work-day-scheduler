@@ -1,12 +1,13 @@
 var mainContainer = $(".container");
 var currentDay = $("#currentDay");
 
-var currentDateString = moment().format("MMMM, Do YYYY");
-var currentDatetime = moment();
-console.log(currentDatetime.hour());
+$(document).ready(function () {
+  var currentDateString = moment().format("MMMM, Do YYYY");
+  var currentDatetime = moment();
+  console.log(currentDatetime.hour());
 
-for (i = 9; i < 18; i++) {
-    var businessHour = moment().hour(i).format("hA")
+  for (i = 9; i < 18; i++) {
+    var businessHour = moment().hour(i).format("hA");
 
     var timeRow = $("<div>");
 
@@ -21,15 +22,16 @@ for (i = 9; i < 18; i++) {
     saveButton.addClass("col-sm-1 saveBtn");
 
     if (currentDatetime.hour() > i) {
-        textArea.addClass("past");
+      textArea.addClass("past");
     } else if (currentDatetime.hour() < i) {
-        textArea.addClass("future");
+      textArea.addClass("future");
     } else {
-        textArea.addClass("present");
+      textArea.addClass("present");
     }
 
     timeRow.append(timeBlock, textArea, saveButton);
     mainContainer.append(timeRow);
-}
+  }
 
-currentDay.text(currentDateString);
+  currentDay.text(currentDateString);
+});
