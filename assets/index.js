@@ -13,6 +13,7 @@ function generateSchedule() {
     var timeBlock = $("<p>").text(businessHour).addClass("col-sm-1 time-block");
     var textArea = $("<textarea>");
     var saveButton = $("<button>").addClass("col-sm-1 saveBtn").attr("data-time", businessHour);
+    var lock = $("<img>").attr("src", "assets/lock.png");
 
     textArea.addClass("col-sm-10");
 
@@ -34,6 +35,7 @@ function generateSchedule() {
       textArea.addClass("present");
     }
 
+    saveButton.append(lock);
     timeRow.append(timeBlock, textArea, saveButton);
     mainContainer.append(timeRow);
   }
