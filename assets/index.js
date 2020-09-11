@@ -1,6 +1,7 @@
 var mainContainer = $(".container");
 var currentDay = $("#currentDay");
 
+//main page generation. creates time blocks, tracks time, and pulls text from local storage
 function generateSchedule() {
   var currentDateString = moment().format("MMMM, Do YYYY");
   var currentDatetime = moment();
@@ -41,6 +42,7 @@ function generateSchedule() {
   currentDay.text(currentDateString);
 }
 
+//adds values to local storage
 function addToStorage(input, number) {
   var storedInput = JSON.parse(localStorage.getItem("todoList"));
 
@@ -69,6 +71,7 @@ $(document).ready(function () {
 
   generateSchedule();
 
+  //calls local storage function when user locks in value
   $(".saveBtn").on("click", function () {
     var textInput = $(this).prev().val();
     var boxSelected = $(this).attr("data-time");
