@@ -20,7 +20,6 @@ function generateSchedule() {
     if (currentInput) {
       for (var t = 0; t < currentInput.length; t++) {
         var textTime = currentInput[t].time;
-        console.log(currentInput[t].time);
         if (textTime === businessHour) {
           textArea.text(currentInput[t].todo);
         }
