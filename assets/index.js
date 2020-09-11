@@ -21,7 +21,7 @@ $(document).ready(function () {
     timeBlock.text(businessHour);
     textArea.addClass("col-sm-10");
     saveButton.addClass("col-sm-1 saveBtn");
-    // saveButton.attr("data-choice", i)
+    saveButton.attr("data-choice", i)
 
     if (currentDatetime.hour() > i) {
       textArea.addClass("past");
@@ -41,8 +41,23 @@ $(document).ready(function () {
   //create listener that listens to buttons
   //store text to local storage when pressed
   $(".saveBtn").on("click", function() {
-    //   var buttonNumber = $(this).attr("data-choice");
-    //   textArea.attr()
-    console.log($(this).prev().val());
+    var textInput = $(this).prev().val();
+    var boxSelected = $(this).attr("data-choice");
+    var storedInput = JSON.parse(localStorage.getItem("todoList"));
+
+    var inputObject = {
+        todo: textInput,
+        boxNumber: boxSelected,
+    }
+
+    if (storedInput) {
+        storedInput.push(inputObject);
+    } else {
+        storedInput = [];
+        storedInput.push(inputObject);
+    }
+
+    localStorage.setItem("todoList", JSON.stringify(storedInput));
+
   })
 });
