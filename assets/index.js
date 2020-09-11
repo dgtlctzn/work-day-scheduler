@@ -4,7 +4,6 @@ var currentDay = $("#currentDay");
 $(document).ready(function () {
   var currentDateString = moment().format("MMMM, Do YYYY");
   var currentDatetime = moment();
-  console.log(currentDatetime.hour());
 
   //text needs to be generated from local storage
   for (i = 9; i < 18; i++) {
@@ -22,7 +21,7 @@ $(document).ready(function () {
     timeBlock.text(businessHour);
     textArea.addClass("col-sm-10");
     saveButton.addClass("col-sm-1 saveBtn");
-    saveButton.attr("data-time", businessHour)
+    saveButton.attr("data-time", businessHour);
 
     if (currentDatetime.hour() > i) {
       textArea.addClass("past");
@@ -43,24 +42,35 @@ $(document).ready(function () {
     var storedInput = JSON.parse(localStorage.getItem("todoList"));
 
     var inputObject = {
-        todo: input,
-        time: number,
-    }
+      todo: input,
+      time: number,
+    };
 
+    // for (var i = 0; i < storedInput.length; i++) {
+    //   if (storedInput[i].time === number) {
+    //     storedInput.splice(storedInput[i], i)
+    //   }
+    // }
     if (storedInput) {
-        storedInput.push(inputObject);
+      for (var i = 0; i < storedInput.length; i++) {
+        if (storedInput[i].time === number) {
+          var currentIndex = storedInput.indexOf(storedInput[i]);
+          storedInput.splice(currentIndex, 1);
+        }
+      }
+      storedInput.push(inputObject);
     } else {
-        storedInput = [];
-        storedInput.push(inputObject);
+      storedInput = [];
+      storedInput.push(inputObject);
     }
 
     localStorage.setItem("todoList", JSON.stringify(storedInput));
   }
- 
-  $(".saveBtn").on("click", function() {
+
+  $(".saveBtn").on("click", function () {
     var textInput = $(this).prev().val();
     var boxSelected = $(this).attr("data-time");
 
     addToStorage(textInput, boxSelected);
-  })
+  });
 });
