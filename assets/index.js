@@ -15,11 +15,13 @@ $(document).ready(function () {
     var textArea = $("<textarea>");
     var saveButton = $("<button>");
 
-    timeRow.addClass("row");
+    timeRow.addClass("row saveText");
+    // timeRow.attr("data-choice", i)
     timeBlock.addClass("col-sm-1 time-block");
     timeBlock.text(businessHour);
     textArea.addClass("col-sm-10");
     saveButton.addClass("col-sm-1 saveBtn");
+    // saveButton.attr("data-choice", i)
 
     if (currentDatetime.hour() > i) {
       textArea.addClass("past");
@@ -34,4 +36,13 @@ $(document).ready(function () {
   }
 
   currentDay.text(currentDateString);
+
+
+  //create listener that listens to buttons
+  //store text to local storage when pressed
+  $(".saveBtn").on("click", function() {
+    //   var buttonNumber = $(this).attr("data-choice");
+    //   textArea.attr()
+    console.log($(this).prev().val());
+  })
 });
