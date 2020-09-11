@@ -11,8 +11,21 @@ $(document).ready(function () {
 
     var timeRow = $("<div>").addClass("row saveText");
     var timeBlock = $("<p>").text(businessHour).addClass("col-sm-1 time-block");
-    var textArea = $("<textarea>").addClass("col-sm-10");
+    var textArea = $("<textarea>");
     var saveButton = $("<button>").addClass("col-sm-1 saveBtn").attr("data-time", businessHour);
+
+    textArea.addClass("col-sm-10");
+
+    var currentInput = JSON.parse(localStorage.getItem("todoList"));
+    if (currentInput) {
+      for (var t = 0; t < currentInput.length; t++) {
+        var textTime = currentInput[t].time;
+        console.log(currentInput[t].time);
+        if (textTime === businessHour) {
+          textArea.text(currentInput[t].todo);
+        }
+      }
+    }
 
     if (currentDatetime.hour() > i) {
       textArea.addClass("past");
