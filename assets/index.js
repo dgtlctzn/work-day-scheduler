@@ -9,19 +9,10 @@ $(document).ready(function () {
   for (i = 9; i < 18; i++) {
     var businessHour = moment().hour(i).format("hA");
 
-    var timeRow = $("<div>");
-
-    var timeBlock = $("<p>");
-    var textArea = $("<textarea>");
-    var saveButton = $("<button>");
-
-    timeRow.addClass("row saveText");
-    // timeRow.attr("data-choice", i)
-    timeBlock.addClass("col-sm-1 time-block");
-    timeBlock.text(businessHour);
-    textArea.addClass("col-sm-10");
-    saveButton.addClass("col-sm-1 saveBtn");
-    saveButton.attr("data-time", businessHour);
+    var timeRow = $("<div>").addClass("row saveText");
+    var timeBlock = $("<p>").text(businessHour).addClass("col-sm-1 time-block");
+    var textArea = $("<textarea>").addClass("col-sm-10");
+    var saveButton = $("<button>").addClass("col-sm-1 saveBtn").attr("data-time", businessHour);
 
     if (currentDatetime.hour() > i) {
       textArea.addClass("past");
@@ -46,11 +37,6 @@ $(document).ready(function () {
       time: number,
     };
 
-    // for (var i = 0; i < storedInput.length; i++) {
-    //   if (storedInput[i].time === number) {
-    //     storedInput.splice(storedInput[i], i)
-    //   }
-    // }
     if (storedInput) {
       for (var i = 0; i < storedInput.length; i++) {
         if (storedInput[i].time === number) {
