@@ -22,7 +22,7 @@ $(document).ready(function () {
     timeBlock.text(businessHour);
     textArea.addClass("col-sm-10");
     saveButton.addClass("col-sm-1 saveBtn");
-    saveButton.attr("data-choice", i)
+    saveButton.attr("data-time", businessHour)
 
     if (currentDatetime.hour() > i) {
       textArea.addClass("past");
@@ -44,7 +44,7 @@ $(document).ready(function () {
 
     var inputObject = {
         todo: input,
-        boxNumber: number,
+        time: number,
     }
 
     if (storedInput) {
@@ -59,7 +59,7 @@ $(document).ready(function () {
  
   $(".saveBtn").on("click", function() {
     var textInput = $(this).prev().val();
-    var boxSelected = $(this).attr("data-choice");
+    var boxSelected = $(this).attr("data-time");
 
     addToStorage(textInput, boxSelected);
   })
