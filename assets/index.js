@@ -6,6 +6,7 @@ $(document).ready(function () {
   var currentDatetime = moment();
   console.log(currentDatetime.hour());
 
+  //text needs to be generated from local storage
   for (i = 9; i < 18; i++) {
     var businessHour = moment().hour(i).format("hA");
 
@@ -37,17 +38,13 @@ $(document).ready(function () {
 
   currentDay.text(currentDateString);
 
-
-  //create listener that listens to buttons
-  //store text to local storage when pressed
-  $(".saveBtn").on("click", function() {
-    var textInput = $(this).prev().val();
-    var boxSelected = $(this).attr("data-choice");
+  //buttons save updated values in seperate objects
+  function addToStorage(input, number) {
     var storedInput = JSON.parse(localStorage.getItem("todoList"));
 
     var inputObject = {
-        todo: textInput,
-        boxNumber: boxSelected,
+        todo: input,
+        boxNumber: number,
     }
 
     if (storedInput) {
@@ -58,6 +55,12 @@ $(document).ready(function () {
     }
 
     localStorage.setItem("todoList", JSON.stringify(storedInput));
+  }
+ 
+  $(".saveBtn").on("click", function() {
+    var textInput = $(this).prev().val();
+    var boxSelected = $(this).attr("data-choice");
 
+    addToStorage(textInput, boxSelected);
   })
 });
