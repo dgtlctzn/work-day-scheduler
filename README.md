@@ -2,7 +2,7 @@
 
 I was tasked with creating a work scheduling website. The website allows text input in time blocks for standard business hours and tracks the date and time. Time blocks that are past are colored gray, present time blocks colored red, and future time blocks colored green. 
 
-To track the time I used the third party api moment.js. This api allowed me to retireve the current date and time and display it in string format. For a simplified code I iterated from 9 to 17 to not only create the html text blocks but to display the string formatted time (business hours from 9AM to 5PM):
+To track the time I used the third party api [Moment.js](https://momentjs.com/). This api allowed me to retireve the current date and time and display it in string format. For a simplified code I iterated from 9 to 17 to not only create the html text blocks but to display the string formatted time (business hours from 9AM to 5PM):
 
 ```
   for (i = 9; i < 18; i++) {
