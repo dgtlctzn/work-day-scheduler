@@ -53,21 +53,19 @@ function addToStorage(input, number) {
   };
 
   if (storedInput) {
+    var newInput = [];
     for (var i = 0; i < storedInput.length; i++) {
-      if (storedInput[i].time === number) {
-        var currentIndex = i;
+      if (storedInput[i].time !== number) {
+        newInput.push(storedInput[i]);
       }
     }
-    if (currentIndex) {
-      storedInput.splice(currentIndex, 1);
-    }
-    storedInput.push(inputObject);
+    newInput.push(inputObject);
   } else {
-    storedInput = [];
-    storedInput.push(inputObject);
+    var newInput = [];
+    newInput.push(inputObject);
   }
 
-  localStorage.setItem("todoList", JSON.stringify(storedInput));
+  localStorage.setItem("todoList", JSON.stringify(newInput));
 }
 
 $(document).ready(function () {
