@@ -12,7 +12,7 @@ To track the time I used the third party api moment.js. This api allowed me to r
     ...
 ```
 
-With the same index I was also able to compare the value of the time blocks and compare it to the current time:
+With the same index I was also able to compare the value of the time blocks with the current time:
 
 ```
     if (moment().hour() > i) {
