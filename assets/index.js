@@ -55,9 +55,11 @@ function addToStorage(input, number) {
   if (storedInput) {
     for (var i = 0; i < storedInput.length; i++) {
       if (storedInput[i].time === number) {
-        var currentIndex = storedInput.indexOf(storedInput[i]);
-        storedInput.splice(currentIndex, 1);
+        var currentIndex = i;
       }
+    }
+    if (currentIndex) {
+      storedInput.splice(currentIndex, 1);
     }
     storedInput.push(inputObject);
   } else {
